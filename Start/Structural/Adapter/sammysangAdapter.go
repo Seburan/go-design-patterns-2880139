@@ -1,33 +1,53 @@
 package main
 
-type sammysangAdapter struct {
+type SammysangAdapter struct {
 	// TODO: add a field for the SammysangTV reference
+	sstv *SammysangTV
 }
 
-func (ss *sammysangAdapter) turnOn() {
+func (ss *SammysangAdapter) turnOn() {
 	// TODO
+	ss.sstv.setOnState(true);
 }
 
-func (ss *sammysangAdapter) turnOff() {
+func (ss *SammysangAdapter) turnOff() {
 	// TODO
+	ss.sstv.setOnState(false);
 }
 
-func (ss *sammysangAdapter) volumeUp() int {
+func (ss *SammysangAdapter) volumeUp() int {
 	// TODO
+	vol := ss.sstv.getVolume() + 1;
+	ss.sstv.setVolume(vol);
+
+	return vol;
 }
 
-func (ss *sammysangAdapter) volumeDown() int {
+func (ss *SammysangAdapter) volumeDown() int {
 	// TODO
+	vol := ss.sstv.getVolume() - 1;
+	ss.sstv.setVolume(vol);
+
+	return vol;
 }
 
-func (ss *sammysangAdapter) channelUp() int {
+func (ss *SammysangAdapter) channelUp() int {
 	// TODO
+	channel := ss.sstv.getChannel() + 1;
+	ss.sstv.setChannel(channel);
+
+	return channel;
 }
 
-func (ss *sammysangAdapter) channelDown() int {
+func (ss *SammysangAdapter) channelDown() int {
 	// TODO
+	channel := ss.sstv.getChannel() - 1;
+	ss.sstv.setChannel(channel);
+
+	return channel;
 }
 
-func (ss *sammysangAdapter) goToChannel(ch int) {
+func (ss *SammysangAdapter) goToChannel(ch int) {
 	// TODO
+	ss.sstv.setChannel(ch);
 }
