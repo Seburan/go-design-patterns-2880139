@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // The NotificationBuilder has fields exported
 type NotificationBuilder struct {
 	Title    string
@@ -46,8 +48,21 @@ func (nb *NotificationBuilder) SetType(notType string) {
 // The Build method returns a fully finished Notification object
 func (nb *NotificationBuilder) Build() (*Notification, error) {
 	// TODO: Error checking can be done at the Build stage
+	if nb.Icon != "" && nb.SubTitle == "" {
+		return nil, fmt.Errorf("You need to specifiy a subtitle when using an icon\n");
+	}
+	if nb.Priority > 5 {
+		return nil, fmt.Errorf("Priority must be 0 to 5");
+	}
 
 	// TODO: Return a newly created Notification object using the current settings
-
-	return nil, nil
+	return &Notification{
+		title: nb.Title,
+		subtitle: nb.SubTitle,
+		message: nb.Message,
+		image: nb.Image,
+		icon: nb.Icon,
+		priority: nb.Priority,
+		notType: nb.NotType,
+	}, nil;
 }
