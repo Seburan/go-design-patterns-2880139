@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	log := getLoggerInstance()
 
@@ -16,4 +18,8 @@ func main() {
 
 	// TODO: create several goroutines that try to get the
 	// logger instance concurrently
+	for i := 0; i < 10; i++ {
+		go getLoggerInstance();
+	}
+	fmt.Scanln();
 }
